@@ -8,7 +8,7 @@ def pascal_triangle(n):
     """
     triangle = [[1]]
     if n <= 0:
-        return triangle
+        return []
     for k in range(n-1):
         prev = triangle[-1]
         col = []
