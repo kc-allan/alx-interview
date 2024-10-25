@@ -6,7 +6,8 @@ Implementation of the minimum operations task
 
 def minOperations(n):
     """
-    Calculates the minimum number of operations (Copy All and Paste) needed to achieve n 'H' characterssssss.
+    Calculates the minimum number of operations\
+        (Copy All and Paste) needed to achieve n 'H' characterssssss.
     Args:\
         n (int): target number of 'H' characters to achieve.
     Returns:\
