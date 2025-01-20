@@ -10,7 +10,6 @@ file_size = 0
 count = 0
 while count < 10:
     for line in sys.stdin.readlines():
-        # print(line)
         lineRegexPattern = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(.*?)\] "GET /projects/260 HTTP/1.1" (\d{3}) (\d+)$'
         if re.match(lineRegexPattern, line):
             lineParts = line.split()
