@@ -11,7 +11,7 @@ def makeChange(coins, total):
     :param total: the total amount of money you need to make change for
     :return: the fewest number of coins needed to meet the total
     """
-    if total == 0:
+    if total <= 0:
         return 0
     answers = []
 
