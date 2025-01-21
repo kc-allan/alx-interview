@@ -1,33 +1,33 @@
 #!/usr/bin/python3
 """
- Prime Game module
+Prime game module.
 """
 
 
 def isWinner(x, nums):
     """
-    Function that returns the name of the player that won the most rounds
+    Determines the winner of a prime game session with `x` rounds.
     :param x: number of rounds
     :param nums: list of integers
-    :return: name of the player that won the most rounds
+    :return: the name of the player that won the most rounds
     """
-    count_wins = {
-        "Maria": 0,
-        "Ben": 0
-    }
-    for nm in nums:
-        primes = [True for i in range(nm + 1)]  # True if nm is prime
-        current = 2  # First prime number
-        maria_wins = False
-        while current <= nm:  # Sieve of Eratosthenes
-            if primes[current] == True:  # If current is prime
-                maria_wins = not maria_wins  # Change player
-                # Mark all multiples of current as False
-                for i in range(current * current, nm + 1, current):
-                    primes[i] = False
-
-            current += 1  # Next number
-        # Add win to player
-        count_wins["Maria"] + 1 if maria_wins else count_wins["Ben"] + 1
-        # Return player with most wins
-        return "Maria" if count_wins["Maria"] > count_wins["Ben"] else "Ben"
+    if x < 1 or not nums:
+        return None
+    marias_wins, bens_wins = 0, 0
+    # generate primes with a limit of the maximum number in nums
+    n = max(nums)
+    primes = [True for _ in range(1, n + 1, 1)]
+    primes[0] = False
+    for i, is_prime in enumerate(primes, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, n + 1, i):
+            primes[j - 1] = False
+    # filter the number of primes less than n in nums for each round
+    for _, n in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+        bens_wins += primes_count % 2 == 0
+        marias_wins += primes_count % 2 == 1
+    if marias_wins == bens_wins:
+        return None
+    return 'Maria' if marias_wins > bens_wins else 'Ben'
