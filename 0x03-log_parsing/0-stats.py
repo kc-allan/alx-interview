@@ -2,6 +2,7 @@
 '''A script for parsing HTTP request logs.
 '''
 import re
+import signal
 
 
 def extract_input(input_line):
@@ -85,4 +86,7 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    try:
+        run()
+    except signal.signal(signal.SIGINT, signal.SIG_IGN, signal.SIGABRT):
+        pass
