@@ -14,11 +14,23 @@ def island_perimeter(grid):
             cell = grid[row][col]
             if cell == 1:
                 # Count border
-                top = 0 if grid[row - 1][col] == 1 else 1
-                bottom = 0 if grid[row + 1][col] == 1 else 1
-                left = 0 if grid[row][col - 1] == 1 else 1
-                right = 0 if grid[row][col + 1] == 1 else 1
+                top = 0 if row > 0 and grid[row - 1][col] == 1 else 1
+                bottom = 0 if row < len(
+                    grid) - 1 and grid[row + 1][col] == 1 else 1
+                left = 0 if col > 0 and grid[row][col - 1] == 1 else 1
+                right = 0 if col < len(
+                    grid[row]) - 1 and grid[row][col + 1] == 1 else 1
 
                 perimeter += top + bottom + left + right
 
     return perimeter
+
+
+if __name__ == "__main__":
+    grid = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 0, 0],
+        [0, 1, 1, 1, 0, 0],
+        [0, 1, 1, 1, 0, 0]
+    ]
+    print(island_perimeter(grid))
